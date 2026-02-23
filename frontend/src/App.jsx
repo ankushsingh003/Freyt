@@ -32,7 +32,6 @@ function App() {
 
     return (
         <div className="min-h-screen font-sans flex flex-col">
-            {/* Header */}
             <nav className="border-b border-white/5 bg-background/50 backdrop-blur-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
@@ -54,7 +53,6 @@ function App() {
             </nav>
 
             <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-                {/* Hero Section */}
                 <div className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                         Freyt: Multi-Agent RAG Logistics
@@ -64,7 +62,6 @@ function App() {
                     </p>
                 </div>
 
-                {/* Search Bar */}
                 <div className="max-w-xl mx-auto mb-16">
                     <form onSubmit={handleAnalyze} className="relative group mb-6">
                         <div className="absolute -inset-1 bg-gradient-to-r from-accent-blue to-accent-purple rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
@@ -89,7 +86,6 @@ function App() {
                         </div>
                     </form>
 
-                    {/* Suggestions */}
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mr-2">Try Demos:</span>
                         <button
@@ -113,7 +109,6 @@ function App() {
                     </div>
                 </div>
 
-                {/* Loading State or Results */}
                 <AnimatePresence>
                     {loading && (
                         <motion.div
@@ -133,7 +128,6 @@ function App() {
                             animate={{ opacity: 1, y: 0 }}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                         >
-                            {/* Agent Cards will go here */}
                             <div className="glass-panel p-6 rounded-2xl border-t-2 border-accent-blue">
                                 <div className="flex items-center gap-3 mb-4">
                                     <Navigation className="w-5 h-5 text-accent-blue" />

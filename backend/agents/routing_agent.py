@@ -11,9 +11,6 @@ class RoutingAgent:
         self.geocode_url = "https://api.geoapify.com/v1/geocode/search"
 
     def geocode_location(self, text):
-        """
-        Converts a location string (e.g., "Mumbai") into lat, lon coordinates.
-        """
         if not self.api_key:
             return {"error": "Geoapify API key not found"}
         
@@ -36,17 +33,12 @@ class RoutingAgent:
             return {"error": f"Geocoding failed: {str(e)}"}
 
     def get_optimized_route(self, waypoints, mode="drive"):
-        """
-        Calculates a route between waypoints using Geoapify Routing API.
-        waypoints should be a list of strings: ["lat,lon", "lat,lon"]
-        """
         if not self.api_key:
             return {"error": "Geoapify API key not found in .env"}
 
         if len(waypoints) < 2:
             return {"error": "At least two waypoints (start and end) are required."}
 
-        # Geoapify format: "lat,lon|lat,lon"
         waypoints_str = "|".join(waypoints)
         
         params = {
@@ -60,7 +52,6 @@ class RoutingAgent:
             response.raise_for_status()
             data = response.json()
 
-            # Extracting basic route info
             if "features" in data and len(data["features"]) > 0:
                 route = data["features"][0]
                 properties = route.get("properties", {})
@@ -79,7 +70,6 @@ class RoutingAgent:
             return {"error": f"Failed to connect to Geoapify: {str(e)}"}
 
 if __name__ == "__main__":
-    # Test block (Mumbai to Pune)
     agent = RoutingAgent()
     test_waypoints = ["18.9500,72.9500", "18.5204,73.8567"]
     print(agent.get_optimized_route(test_waypoints))

@@ -10,9 +10,6 @@ class WeatherAgent:
         self.base_url = "https://api.openweathermap.org/data/2.5/weather"
 
     def check_weather(self, lat, lon):
-        """
-        Fetches the current weather for the given GPS coordinates.
-        """
         if not self.api_key:
             return {"error": "OpenWeather API key not found in .env"}
 
@@ -20,7 +17,7 @@ class WeatherAgent:
             "lat": lat,
             "lon": lon,
             "appid": self.api_key,
-            "units": "metric"  # For Celsius
+            "units": "metric"
         }
 
         try:
@@ -28,7 +25,6 @@ class WeatherAgent:
             response.raise_for_status()
             data = response.json()
 
-            # Extracting key logistics metrics
             weather_main = data.get("weather", [{}])[0].get("main", "Clear")
             temp = data.get("main", {}).get("temp")
             humidity = data.get("main", {}).get("humidity")
@@ -47,9 +43,6 @@ class WeatherAgent:
             return {"error": f"Failed to connect to OpenWeather: {str(e)}"}
 
     def _calculate_risk(self, condition, humidity, wind_speed):
-        """
-        Basic logic to determine logistics risk level based on weather.
-        """
         if condition in ["Storm", "Extreme", "Tornado", "Hurricane"]:
             return "HIGH"
         if condition in ["Rain", "Snow", "Drizzle"] or humidity > 85 or wind_speed > 15:
@@ -57,6 +50,5 @@ class WeatherAgent:
         return "LOW"
 
 if __name__ == "__main__":
-    # Test block (Mumbai coordinates: 18.9500, 72.9500)
     agent = WeatherAgent()
     print(agent.check_weather(18.9500, 72.9500))
