@@ -57,6 +57,6 @@ class WeatherAgent:
         return "LOW"
 
 if __name__ == "__main__":
-    # Test block (London coordinates: 51.5074, -0.1278)
+    # Test block (Mumbai coordinates: 18.9500, 72.9500)
     agent = WeatherAgent()
-    print(agent.check_weather(51.5074, -0.1278))
+    print(agent.check_weather(18.9500, 72.9500))

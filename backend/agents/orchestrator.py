@@ -21,8 +21,8 @@ class OrchestratorAgent:
                 "DEMO-BLR-003": {"location": "Kempegowda, Bengaluru (IN)", "carrier": "ups"}
             }
             
-            # Default to London if ID is just "DEMO-123" or similar
-            selected = demo_data.get(str(tracking_id).upper(), demo_data["DEMO-LONDON-001"])
+            # Default to Mumbai if ID is just "DEMO-123" or similar
+            selected = demo_data.get(str(tracking_id).upper(), demo_data["DEMO-MUMBAI-001"])
             
             return {
                 "tracking_id": tracking_id,

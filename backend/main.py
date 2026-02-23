@@ -70,7 +70,7 @@ async def analyze_shipment(request: ShipmentRequest):
 
     # 4. Action Agent calculates an alternate route if needed
     # (Simplified: always calculate a route for demo)
-    test_waypoints = [f"{lat},{lon}", "53.4808,-2.2426"] # London to Manchester
+    test_waypoints = [f"{lat},{lon}", "18.5204,73.8567"] # Current to Pune (IN)
     routing_info = routing_agent.get_optimized_route(test_waypoints)
 
     return {

@@ -53,7 +53,7 @@ class RoutingAgent:
             return {"error": f"Failed to connect to Geoapify: {str(e)}"}
 
 if __name__ == "__main__":
-    # Test block (London to Manchester)
+    # Test block (Mumbai to Pune)
     agent = RoutingAgent()
-    test_waypoints = ["51.5074,-0.1278", "53.4808,-2.2426"]
+    test_waypoints = ["18.9500,72.9500", "18.5204,73.8567"]
     print(agent.get_optimized_route(test_waypoints))
