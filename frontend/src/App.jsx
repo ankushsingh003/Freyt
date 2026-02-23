@@ -6,6 +6,22 @@ function App() {
     const [trackingId, setTrackingId] = useState('')
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState(null)
+    const [showDropdown, setShowDropdown] = useState(false)
+
+    const demoItems = {
+        indian: [
+            { id: 'DEMO-MUMBAI-001', label: 'Mumbai Hub (JNPT)' },
+            { id: 'DEMO-DELHI-002', label: 'Delhi Cargo (IGI)' },
+            { id: 'DEMO-BLR-003', label: 'Bengaluru Cargo (KIAL)' },
+            { id: 'DEMO-KOLKATA-004', label: 'Kolkata Port (Haldia)' },
+            { id: 'DEMO-CHENNAI-005', label: 'Chennai Hub' },
+            { id: 'DEMO-HYD-006', label: 'Hyderabad Cargo' },
+        ],
+        global: [
+            { id: 'DEMO-LONDON-007', label: 'London Hub (LHR)' },
+            { id: 'DEMO-NYC-008', label: 'New York Cargo (JFK)' },
+        ]
+    }
 
     const handleAnalyze = async (e) => {
         e.preventDefault()
@@ -13,6 +29,7 @@ function App() {
 
         setLoading(true)
         setResult(null)
+        setShowDropdown(false)
 
         try {
             const response = await fetch('/api/analyze-shipment', {
@@ -30,8 +47,13 @@ function App() {
         }
     }
 
+    const selectDemo = (id) => {
+        setTrackingId(id)
+        setShowDropdown(false)
+    }
+
     return (
-        <div className="min-h-screen font-sans flex flex-col">
+        <div className="min-h-screen font-sans flex flex-col" onClick={() => setShowDropdown(false)}>
             <nav className="border-b border-white/5 bg-background/50 backdrop-blur-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
@@ -62,8 +84,8 @@ function App() {
                     </p>
                 </div>
 
-                <div className="max-w-xl mx-auto mb-16">
-                    <form onSubmit={handleAnalyze} className="relative group mb-6">
+                <div className="max-w-xl mx-auto mb-16 relative">
+                    <form onSubmit={handleAnalyze} className="relative group mb-4" onClick={(e) => e.stopPropagation()}>
                         <div className="absolute -inset-1 bg-gradient-to-r from-accent-blue to-accent-purple rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                         <div className="relative flex items-center bg-[#0d1117] border border-white/10 rounded-xl overflow-hidden focus-within:border-accent-blue/50 transition-all">
                             <div className="pl-4 pointer-events-none">
@@ -71,10 +93,14 @@ function App() {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Enter any Tracking ID (e.g. SHIP-2024-001)"
+                                placeholder="Enter Tracking ID..."
                                 className="block w-full py-4 px-4 bg-transparent border-0 focus:ring-0 outline-none focus:outline-none text-white placeholder-gray-500 font-medium"
                                 value={trackingId}
                                 onChange={(e) => setTrackingId(e.target.value)}
+                                onFocus={(e) => {
+                                    e.stopPropagation()
+                                    setShowDropdown(true)
+                                }}
                             />
                             <button
                                 type="submit"
@@ -84,30 +110,52 @@ function App() {
                                 {loading ? 'Analyzing...' : 'Analyze'}
                             </button>
                         </div>
-                    </form>
 
-                    <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
-                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest w-full text-center mb-1">Indian Hubs</span>
-                        {['Mumbai', 'Delhi', 'BLR', 'Kolkata', 'Chennai', 'HYD'].map((city) => (
-                            <button
-                                key={city}
-                                onClick={() => setTrackingId(`DEMO-${city.toUpperCase()}-${city === 'Mumbai' ? '001' : city === 'Delhi' ? '002' : city === 'BLR' ? '003' : city === 'Kolkata' ? '004' : city === 'Chennai' ? '005' : '006'}`)}
-                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all capitalize"
-                            >
-                                {city}
-                            </button>
-                        ))}
-                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest w-full text-center mt-3 mb-1">Global Hubs</span>
-                        {['London', 'NYC'].map((city) => (
-                            <button
-                                key={city}
-                                onClick={() => setTrackingId(`DEMO-${city.toUpperCase()}-${city === 'London' ? '007' : '008'}`)}
-                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-gray-400 hover:border-accent-purple/50 hover:text-white transition-all capitalize"
-                            >
-                                {city}
-                            </button>
-                        ))}
-                    </div>
+                        <AnimatePresence>
+                            {showDropdown && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                                    className="absolute top-full left-0 right-0 mt-2 p-4 bg-[#0d1117]/95 backdrop-blur-xl border border-white/10 rounded-2xl z-[100] shadow-2xl overflow-hidden"
+                                >
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3 px-2">Indian Hubs</div>
+                                            <div className="space-y-1">
+                                                {demoItems.indian.map((item) => (
+                                                    <button
+                                                        key={item.id}
+                                                        onClick={() => selectDemo(item.id)}
+                                                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 transition-colors group"
+                                                    >
+                                                        <div className="text-xs font-semibold text-gray-300 group-hover:text-accent-blue">{item.label}</div>
+                                                        <div className="text-[10px] text-gray-500">{item.id}</div>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div className="border-l border-white/5 pl-4">
+                                            <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3 px-2">Global Hubs</div>
+                                            <div className="space-y-1">
+                                                {demoItems.global.map((item) => (
+                                                    <button
+                                                        key={item.id}
+                                                        onClick={() => selectDemo(item.id)}
+                                                        className="w-full text-left px-3 py-2 rounded-lg hover:bg-white/5 transition-colors group"
+                                                    >
+                                                        <div className="text-xs font-semibold text-gray-300 group-hover:text-accent-purple">{item.label}</div>
+                                                        <div className="text-[10px] text-gray-500">{item.id}</div>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </form>
+                    <p className="text-[10px] text-center text-gray-600 italic">Click input to see all demo hubs</p>
                 </div>
 
                 <AnimatePresence>
