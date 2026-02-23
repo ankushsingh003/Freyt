@@ -8,6 +8,32 @@ class RoutingAgent:
     def __init__(self):
         self.api_key = os.getenv("GEOAPIFY_API_KEY")
         self.base_url = "https://api.geoapify.com/v1/routing"
+        self.geocode_url = "https://api.geoapify.com/v1/geocode/search"
+
+    def geocode_location(self, text):
+        """
+        Converts a location string (e.g., "Mumbai") into lat, lon coordinates.
+        """
+        if not self.api_key:
+            return {"error": "Geoapify API key not found"}
+        
+        params = {
+            "text": text,
+            "apiKey": self.api_key,
+            "limit": 1
+        }
+        
+        try:
+            response = requests.get(self.geocode_url, params=params)
+            response.raise_for_status()
+            data = response.json()
+            
+            if data.get("features"):
+                lon, lat = data["features"][0]["geometry"]["coordinates"]
+                return {"lat": lat, "lon": lon, "formatted": data["features"][0]["properties"].get("formatted")}
+            return {"error": f"Coordinates not found for: {text}"}
+        except Exception as e:
+            return {"error": f"Geocoding failed: {str(e)}"}
 
     def get_optimized_route(self, waypoints, mode="drive"):
         """

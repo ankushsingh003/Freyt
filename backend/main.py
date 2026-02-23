@@ -46,16 +46,16 @@ async def analyze_shipment(request: ShipmentRequest):
     if "error" in shipment_info:
         raise HTTPException(status_code=400, detail=shipment_info["error"])
 
-    # For demo purposes, we'll use a coordinate lookup for our demo cities
-    # In a real app, you'd use a Geocoding API or extract coordinates from the TrackingMore data
-    location_coords = {
-        "JNPT, Mumbai (IN)": (18.9500, 72.9500),
-        "IGI Cargo, Delhi (IN)": (28.5562, 77.1000),
-        "Kempegowda, Bengaluru (IN)": (13.1986, 77.7066)
-    }
+    # 2. Extract coordinates dynamically using Geocoding
+    # This replaces the hardcoded coordinate mapping
+    geo_info = routing_agent.geocode_location(shipment_info["location"])
     
-    current_location = shipment_info.get("location")
-    lat, lon = location_coords.get(current_location, (18.9500, 72.9500)) # Default to Mumbai
+    if "error" in geo_info:
+        # Fallback to a default or raise an error if needed
+        # For now, let's use Mumbai as a fallback if geocoding fails
+        lat, lon = 18.9500, 72.9500
+    else:
+        lat, lon = geo_info["lat"], geo_info["lon"]
 
     # 2. Weather Agent analyzes risks at that location
     weather_info = weather_agent.check_weather(lat, lon)

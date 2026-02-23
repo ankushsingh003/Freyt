@@ -61,10 +61,18 @@ class OrchestratorAgent:
                 trackings = data.get("data", [])
                 if trackings:
                     shipment = trackings[0]
+                    # Attempt to get a readable location string
+                    # TrackingMore often provides city and province in separate fields or within 'last_event'
+                    city = shipment.get("city", "")
+                    province = shipment.get("province", "")
+                    country = shipment.get("country_name", "")
+                    
+                    location = f"{city}, {province} ({country})" if city else shipment.get("last_event", "Location Unknown")
+                    
                     return {
                         "tracking_id": tracking_id,
                         "status": shipment.get("delivery_status", "unknown"),
-                        "location": shipment.get("last_event", "Location data pending"),
+                        "location": location,
                         "carrier": shipment.get("carrier_code", "unknown"),
                         "raw_data": shipment
                     }

@@ -60,7 +60,7 @@ function App() {
                         Freyt: Multi-Agent RAG Logistics
                     </h1>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                        Autonomous AI agents collaborating to track, analyze, and optimize your Indian logistics network using professional-grade RAG.
+                        Autonomous AI agents collaborating to track, analyze, and optimize your logistics network using live tracking data and professional-grade RAG.
                     </p>
                 </div>
 
@@ -74,7 +74,7 @@ function App() {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Enter Tracking ID (e.g. SHIP-2024-001)"
+                                placeholder="Enter any Tracking ID (e.g. SHIP-2024-001)"
                                 className="block w-full py-4 px-4 bg-transparent border-0 focus:ring-0 outline-none focus:outline-none text-white placeholder-gray-500 font-medium"
                                 value={trackingId}
                                 onChange={(e) => setTrackingId(e.target.value)}
@@ -91,24 +91,24 @@ function App() {
 
                     {/* Suggestions */}
                     <div className="flex flex-wrap items-center justify-center gap-3">
-                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mr-2">Try these:</span>
+                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mr-2">Try Demos:</span>
                         <button
                             onClick={() => setTrackingId('DEMO-MUMBAI-001')}
                             className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
                         >
-                            DEMO-MUMBAI-001
+                            MUMBAI (Demo)
                         </button>
                         <button
                             onClick={() => setTrackingId('DEMO-DELHI-002')}
                             className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
                         >
-                            DEMO-DELHI-002
+                            DELHI (Demo)
                         </button>
                         <button
                             onClick={() => setTrackingId('DEMO-BLR-003')}
                             className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
                         >
-                            DEMO-BLR-003
+                            BLR (Demo)
                         </button>
                     </div>
                 </div>
