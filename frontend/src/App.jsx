@@ -60,7 +60,7 @@ function App() {
                         Freyt: Multi-Agent RAG Logistics
                     </h1>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                        Autonomous AI agents collaborating to track, analyze, and optimize your global logistics network using professional-grade RAG.
+                        Autonomous AI agents collaborating to track, analyze, and optimize your Indian logistics network using professional-grade RAG.
                     </p>
                 </div>
 
@@ -93,22 +93,22 @@ function App() {
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mr-2">Try these:</span>
                         <button
-                            onClick={() => setTrackingId('DEMO-LONDON-001')}
+                            onClick={() => setTrackingId('DEMO-MUMBAI-001')}
                             className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
                         >
-                            DEMO-LONDON-001
+                            DEMO-MUMBAI-001
                         </button>
                         <button
-                            onClick={() => setTrackingId('DEMO-BERLIN-002')}
+                            onClick={() => setTrackingId('DEMO-DELHI-002')}
                             className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
                         >
-                            DEMO-BERLIN-002
+                            DEMO-DELHI-002
                         </button>
                         <button
-                            onClick={() => setTrackingId('DEMO-TOKYO-003')}
+                            onClick={() => setTrackingId('DEMO-BLR-003')}
                             className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
                         >
-                            DEMO-TOKYO-003
+                            DEMO-BLR-003
                         </button>
                     </div>
                 </div>

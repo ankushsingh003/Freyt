@@ -13,14 +13,23 @@ class OrchestratorAgent:
         """
         Fetches the real-time status and location of a shipment using TrackingMore API.
         """
-        # --- DEMO MODE LOGIC ---
+        # --- DYNAMIC DEMO MODE LOGIC ---
         if str(tracking_id).upper().startswith("DEMO"):
+            demo_data = {
+                "DEMO-MUMBAI-001": {"location": "JNPT, Mumbai (IN)", "carrier": "dhl"},
+                "DEMO-DELHI-002": {"location": "IGI Cargo, Delhi (IN)", "carrier": "fedex"},
+                "DEMO-BLR-003": {"location": "Kempegowda, Bengaluru (IN)", "carrier": "ups"}
+            }
+            
+            # Default to London if ID is just "DEMO-123" or similar
+            selected = demo_data.get(str(tracking_id).upper(), demo_data["DEMO-LONDON-001"])
+            
             return {
                 "tracking_id": tracking_id,
                 "status": "in_transit",
-                "location": "Heathrow, London (UK)",
-                "carrier": "dhl",
-                "raw_data": {"demo": True}
+                "location": selected["location"],
+                "carrier": selected["carrier"],
+                "raw_data": {"demo": True, "location_key": selected["location"]}
             }
         # -----------------------
 
