@@ -10,4 +10,3 @@ pypdf
 requests
 python-dotenv
 pydantic
-

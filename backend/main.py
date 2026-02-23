@@ -26,8 +26,17 @@ app.add_middleware(
 
 orchestrator = OrchestratorAgent()
 weather_agent = WeatherAgent()
-diagnosis_agent = DiagnosisAgent(pdf_path="../data/freight-europe-general-terms-and-conditions-for-transport-services-en.pdf")
 routing_agent = RoutingAgent()
+
+diagnosis_agent = None
+
+@app.on_event("startup")
+async def startup_event():
+    global diagnosis_agent
+    try:
+        diagnosis_agent = DiagnosisAgent(pdf_path="../data/freight-europe-general-terms-and-conditions-for-transport-services-en.pdf")
+    except Exception as e:
+        print(f"FAILED TO LOAD RAG AGENT: {e}")
 
 class ShipmentRequest(BaseModel):
     tracking_id: str
