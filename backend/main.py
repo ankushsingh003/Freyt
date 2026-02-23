@@ -2,7 +2,11 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
+import sys
 from dotenv import load_dotenv
+
+# Add the current directory to sys.path to ensure 'agents' can be imported on Render
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import our agents
 from agents.orchestrator import OrchestratorAgent
