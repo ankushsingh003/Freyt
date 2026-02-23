@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+backend/venv/
+.venv/
+env/
+venv/
+ENV/
+
+# Database
+backend/chroma_db*/
+chroma_db*/
+
+# Environment Variables
+.env
+backend/.env
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+frontend/dist/
+dist/
+build/
+
+# Vite
+.vite/
