@@ -75,7 +75,7 @@ function App() {
                             <input
                                 type="text"
                                 placeholder="Enter Tracking ID (e.g. SHIP-2024-001)"
-                                className="block w-full py-4 px-4 bg-transparent border-none focus:ring-0 text-white placeholder-gray-500 font-medium"
+                                className="block w-full py-4 px-4 bg-transparent border-0 focus:ring-0 outline-none focus:outline-none text-white placeholder-gray-500 font-medium"
                                 value={trackingId}
                                 onChange={(e) => setTrackingId(e.target.value)}
                             />
