@@ -175,8 +175,15 @@ function App() {
                     )}
                 </AnimatePresence>
             </main>
-        </div>
-    )
-}
 
-export default App
+            <footer className="py-8 border-t border-white/5 text-center px-4">
+                <p className="text-gray-500 text-sm font-medium tracking-wide">
+                    Engineered with ❤️ by <span className="text-accent-blue hover:text-accent-purple transition-colors cursor-default">Ankush Singh</span>
+                </p>
+                <p className="text-gray-600 text-xs mt-1">© 2026 Freyt Logistics AI. All rights reserved.</p>
+            </footer>
+        </div>
+    );
+};
+
+export default App;
