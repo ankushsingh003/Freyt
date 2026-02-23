@@ -25,22 +25,32 @@ graph TD
     J --> K[Frontend Dashboard]
 ```
 
-## ✨ Core Features
+## 📑 Technical Blueprint & Agentic Reasoning
 
-- **Autonomous Agentic Workflow**: Four specialized agents (Orchestrator, Weather, RAG, and Routing) collaborating in real-time.
-- **Dynamic Geocoding**: Automatically converts any city name from tracking data into precise GPS coordinates.
-- **RAG-Powered Diagnosis**: Uses LangChain and ChromaDB to analyze weather risks against the official **DHL Carrier Handbook**.
-- **Real-Time API Integration**: Connected to TrackingMore (Live Shipping), OpenWeather, and Geoapify.
-- **Premium UI**: A sleek, high-performance dark-mode dashboard built with Framer Motion and Tailwind CSS.
-- **India Specialized**: Optimized hubs for Mumbai, Delhi, and Bengaluru for the Indian market.
+Freyt leverages a **Distributed Multi-Agent Architecture** to solve high-entropy logistics challenges. The system is designed around four core technical pillars:
 
-## 🛠️ Tech Stack
+1.  **Autonomous Agentic Orchestration**: Uses a hierarchical control pattern where a lead Orchestrator manages state transitions between specialized worker agents (Weather, Routing, RAG).
+2.  **Retrieval-Augmented Generation (RAG)**: Implements a production-grade RAG pipeline using **Recursive Character Text Splitting** and **ChromaDB Vector Store** to ground LLM inference in authoritative carrier documentation (DHL GTC).
+3.  **Semantic Context Injection**: Automatically enriches agent prompts with real-time telemetry (Weather, GPS, Transit Status) to ensure context-aware decision making.
+4.  **Asynchronous API Synchronization**: Handles non-blocking integration with multiple third-party providers including **TrackingMore** (REST), **OpenWeather** (JSON/MET), and **Geoapify** (Geospatial).
 
-- **Frontend**: React, Vite, Tailwind CSS, Framer Motion, Lucide Icons.
-- **Backend**: FastAPI, Python, Uvicorn.
-- **AI/LLM**: Google Gemini (Embeddings & Inference), LangChain.
-- **Database**: ChromaDB (Vector Store).
-- **APIs**: TrackingMore, OpenWeather, Geoapify.
+## ✨ Advanced Features
+
+- **Multi-Agent Collaborative Intelligence**: Synergistic workflow between four agents using **Gemini-1.5-Flash** for high-speed, cost-efficient inference.
+- **Geospatial Intelligence (Geo-Int)**: Dynamic conversion of unstructured transit location strings into structured GPS coordinates for environmental risk modeling.
+- **Deterministic vs. Probabilistic Reasoning**: Combines deterministic tracking data with probabilistic AI risk assessments for comprehensive logistics diagnosis.
+- **Glassmorphism UI/UX**: High-performance React dashboard utilizing **Framer Motion** for state-driven micro-animations and **Tailwind CSS** for responsive layout orchestration.
+- **Smart Demo Suite**: Categorized hub selection (Indian & Global) for instant system verification and edge-case testing.
+
+## 🛠️ Technological Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Logic & Orchestration** | FastAPI (Python), LangChain |
+| **Generative AI** | Google Gemini (Gemini Pro, Embedding-001) |
+| **Data Persistence** | ChromaDB (Vector store hosted locally/cloud) |
+| **User Interface** | React 18, Vite, Framer Motion, Tailwind |
+| **Intelligence APIs** | TrackingMore (Logistics), OpenWeather (Met), Geoapify (GIS) |
 
 ## 🚀 Getting Started
 
