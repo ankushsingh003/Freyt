@@ -14,7 +14,12 @@ class OrchestratorAgent:
             demo_data = {
                 "DEMO-MUMBAI-001": {"location": "JNPT, Mumbai (IN)", "carrier": "dhl"},
                 "DEMO-DELHI-002": {"location": "IGI Cargo, Delhi (IN)", "carrier": "fedex"},
-                "DEMO-BLR-003": {"location": "Kempegowda, Bengaluru (IN)", "carrier": "ups"}
+                "DEMO-BLR-003": {"location": "Kempegowda, Bengaluru (IN)", "carrier": "ups"},
+                "DEMO-KOLKATA-004": {"location": "Haldia Port, Kolkata (IN)", "carrier": "ups"},
+                "DEMO-CHENNAI-005": {"location": "Chennai Port, Chennai (IN)", "carrier": "fedex"},
+                "DEMO-HYD-006": {"location": "GMR Cargo, Hyderabad (IN)", "carrier": "dhl"},
+                "DEMO-LONDON-007": {"location": "Heathrow Cargo, London (UK)", "carrier": "ups"},
+                "DEMO-NYC-008": {"location": "JFK Cargo, New York (US)", "carrier": "fedex"}
             }
             
             selected = demo_data.get(str(tracking_id).upper(), demo_data["DEMO-MUMBAI-001"])

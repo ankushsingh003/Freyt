@@ -86,26 +86,27 @@ function App() {
                         </div>
                     </form>
 
-                    <div className="flex flex-wrap items-center justify-center gap-3">
-                        <span className="text-xs font-bold text-gray-500 uppercase tracking-widest mr-2">Try Demos:</span>
-                        <button
-                            onClick={() => setTrackingId('DEMO-MUMBAI-001')}
-                            className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
-                        >
-                            MUMBAI (Demo)
-                        </button>
-                        <button
-                            onClick={() => setTrackingId('DEMO-DELHI-002')}
-                            className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
-                        >
-                            DELHI (Demo)
-                        </button>
-                        <button
-                            onClick={() => setTrackingId('DEMO-BLR-003')}
-                            className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all"
-                        >
-                            BLR (Demo)
-                        </button>
+                    <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest w-full text-center mb-1">Indian Hubs</span>
+                        {['Mumbai', 'Delhi', 'BLR', 'Kolkata', 'Chennai', 'HYD'].map((city) => (
+                            <button
+                                key={city}
+                                onClick={() => setTrackingId(`DEMO-${city.toUpperCase()}-${city === 'Mumbai' ? '001' : city === 'Delhi' ? '002' : city === 'BLR' ? '003' : city === 'Kolkata' ? '004' : city === 'Chennai' ? '005' : '006'}`)}
+                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-gray-400 hover:border-accent-blue/50 hover:text-white transition-all capitalize"
+                            >
+                                {city}
+                            </button>
+                        ))}
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest w-full text-center mt-3 mb-1">Global Hubs</span>
+                        {['London', 'NYC'].map((city) => (
+                            <button
+                                key={city}
+                                onClick={() => setTrackingId(`DEMO-${city.toUpperCase()}-${city === 'London' ? '007' : '008'}`)}
+                                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-gray-400 hover:border-accent-purple/50 hover:text-white transition-all capitalize"
+                            >
+                                {city}
+                            </button>
+                        ))}
                     </div>
                 </div>
 
