@@ -2,6 +2,8 @@
 
 Freyt is a professional-grade logistics management platform that orchestrates autonomous AI agents to track shipments, analyze weather risks, and optimize routes using **Retrieval-Augmented Generation (RAG)**.
 
+> ### Engineered with ❤️ by Ankush Singh
+
 ![Freyt Dashboard Preview](https://img.shields.io/badge/Status-Complete-green?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Tech-FastAPI_%7C_React_%7C_ChromaDB-blue?style=for-the-badge)
 
