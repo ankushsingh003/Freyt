@@ -31,7 +31,7 @@ function App() {
     }
 
     return (
-        <div className="min-h-screen font-sans">
+        <div className="min-h-screen font-sans flex flex-col">
             {/* Header */}
             <nav className="border-b border-white/5 bg-background/50 backdrop-blur-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -176,7 +176,7 @@ function App() {
                 </AnimatePresence>
             </main>
 
-            <footer className="py-8 border-t border-white/5 text-center px-4">
+            <footer className="mt-auto py-8 border-t border-white/5 text-center px-4">
                 <p className="text-gray-500 text-sm font-medium tracking-wide">
                     Engineered with ❤️ by <span className="text-accent-blue hover:text-accent-purple transition-colors cursor-default">Ankush Singh</span>
                 </p>
